@@ -76,12 +76,12 @@ function buildAndShowHomeHTML (categories) {
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
     function (homeHtml) {  //TODO: Step 2
-      randCategory = chooseRandomCategory(categories);
-      short_name = "'" + randCategory.short_name + "'";
+      random = chooseRandomCategory(categories);
+      s = "'" + random.short_name + "'";
       // console.log(homeHtml);
 
-      var html = insertProperty (homeHtml, "randomCategoryShortName", short_name);
-      insertHtml("#main-content", html);
+      var htmlinserted = insertProperty (homeHtml, "randomCategoryShortName", s);
+      insertHtml("#main-content", htmlinserted);
 
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
