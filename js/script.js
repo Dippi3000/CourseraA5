@@ -65,9 +65,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // TODO: Step 1:
 showLoading("#main-content");
 $ajaxUtils.sendGetRequest(
-  allCategoriesUrl, 
-  buildAndShowHomeHTML, 
-  true); // Explicitely setting the flag to get JSON from server processed into an object literal
+  allCategoriesUrl, buildAndShowHomeHTML, true); // Explicitely setting the flag to get JSON from server processed into an object literal
 });
 
 // Builds HTML for the home page based on categories array
@@ -77,11 +75,14 @@ function buildAndShowHomeHTML (categories) {
   // Load home snippet page
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
-    function (homeHtml) {  
-      ChosenCategoryShortName = chooseRandomCategory(categories);
-      s = "'" + ChosenCategoryShortName.s + "'";
-      var HomeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", s);
+    function (homeHtml) {  //TODO: Step 2
+      randCategory = chooseRandomCategory(categories);
+      short_name = "'" + randCategory.short_name + "'";
+      // console.log(homeHtml);
+
+      var html = insertProperty (homeHtml, "randomCategoryShortName", short_name);
       insertHtml("#main-content", html);
+
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 }
